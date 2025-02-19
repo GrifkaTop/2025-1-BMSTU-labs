@@ -1,0 +1,6 @@
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/CMakeFiles/lab1.dir
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/CMakeFiles/edit_cache.dir
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/CMakeFiles/rebuild_cache.dir
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/mymath/CMakeFiles/mymath.dir
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/mymath/CMakeFiles/edit_cache.dir
+/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/mymath/CMakeFiles/rebuild_cache.dir
