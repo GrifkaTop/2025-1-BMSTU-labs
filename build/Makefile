@@ -129,19 +129,6 @@ lab1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/build
 .PHONY : lab1/fast
 
-#=============================================================================
-# Target rules for targets named mymath
-
-# Build rule for target.
-mymath: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mymath
-.PHONY : mymath
-
-# fast build rule for target.
-mymath/fast:
-	$(MAKE) $(MAKESILENT) -f mymath/CMakeFiles/mymath.dir/build.make mymath/CMakeFiles/mymath.dir/build
-.PHONY : mymath/fast
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -175,7 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lab1"
-	@echo "... mymath"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

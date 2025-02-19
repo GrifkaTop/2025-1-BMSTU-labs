@@ -150,4 +150,5 @@ CMakeFiles/lab1.dir/main.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/mymath/mymath.h
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/mymath.h \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/cat.h

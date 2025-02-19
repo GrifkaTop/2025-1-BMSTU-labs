@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/lab1.dir/main.cpp.o -o lab1  mymath/libmymath.a 
+/usr/bin/c++ CMakeFiles/lab1.dir/main.cpp.o -o lab1  "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/libcat.a" "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/libmymath.a" 
