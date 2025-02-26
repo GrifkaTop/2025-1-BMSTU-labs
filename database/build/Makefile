@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs"
+CMAKE_SOURCE_DIR = "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build"
+CMAKE_BINARY_DIR = "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/CMakeFiles" "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database/build/CMakeFiles" "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lab1
+# Target rules for targets named database
 
 # Build rule for target.
-lab1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab1
-.PHONY : lab1
+database: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database
+.PHONY : database
 
 # fast build rule for target.
-lab1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/build
-.PHONY : lab1/fast
+database/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/database.dir/build.make CMakeFiles/database.dir/build
+.PHONY : database/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+database.o: database.cpp.o
+.PHONY : database.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.o
-.PHONY : main.cpp.o
+database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/database.dir/build.make CMakeFiles/database.dir/database.cpp.o
+.PHONY : database.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+database.i: database.cpp.i
+.PHONY : database.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.i
-.PHONY : main.cpp.i
+database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/database.dir/build.make CMakeFiles/database.dir/database.cpp.i
+.PHONY : database.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+database.s: database.cpp.s
+.PHONY : database.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.s
-.PHONY : main.cpp.s
+database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/database.dir/build.make CMakeFiles/database.dir/database.cpp.s
+.PHONY : database.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... lab1"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... database"
+	@echo "... database.o"
+	@echo "... database.i"
+	@echo "... database.s"
 .PHONY : help
 
 

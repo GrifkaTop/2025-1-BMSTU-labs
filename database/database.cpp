@@ -49,7 +49,7 @@ template<typename T> int Database<T>::writeFile () {
 
 
 template<typename T> void Database<T>::srt(bool r){
-    this->srt(r, arr, size);
+    this-> srt(r, arr, size);
     return;
 }
 

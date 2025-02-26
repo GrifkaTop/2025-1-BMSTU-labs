@@ -1,5 +1,6 @@
 #include <iostream>
 #include "database.hpp"
+#include "planet.hpp"
 
 using namespace std;
 

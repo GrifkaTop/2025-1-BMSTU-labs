@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/lab1.dir/main.cpp.o -o lab1  "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/libdatabase.a" "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/libplanet.a" 

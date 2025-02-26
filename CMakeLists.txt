@@ -1,20 +1,18 @@
 cmake_minimum_required(VERSION 3.23)
 
-set(project "lab2")
+set(project "lab1")
 project(${project})
 
 set(CMAKE_CXX_STANDARD 17)
 
 set(${project}_SOURCES
-        database.cpp, planet.cpp)
+        main.cpp)
 
-set(${project}_HEADERS
-        database.hpp, planet.hpp)
 
 set(${project}_SOURCE_LIST
-        ${${project}_SOURCES}
-        ${${project}_HEADERS})
+        ${${project}_SOURCES})
 
-add_library(${project}
-        STATIC
+add_executable(${project}
         ${${project}_SOURCE_LIST})
+
+target_link_libraries(${project} ${CMAKE_SOURCE_DIR}/libdatabase.a ${CMAKE_SOURCE_DIR}/libplanet.a)
