@@ -47,8 +47,6 @@ class Planet{
             SATTELITE = 4
         };
 
-        void srt( bool r, Planet* arr, int size);
-
         Planet read();
 
     };

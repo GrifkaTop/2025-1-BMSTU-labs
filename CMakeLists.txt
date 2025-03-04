@@ -6,7 +6,10 @@ project(${project})
 set(CMAKE_CXX_STANDARD 17)
 
 set(${project}_SOURCES
-        main.cpp)
+        main.cpp planet.cpp)
+
+set(${project}_HEADERS
+        planet.hpp database.hpp)
 
 
 set(${project}_SOURCE_LIST
@@ -15,4 +18,7 @@ set(${project}_SOURCE_LIST
 add_executable(${project}
         ${${project}_SOURCE_LIST})
 
-target_link_libraries(${project} ${CMAKE_SOURCE_DIR}/libdatabase.a ${CMAKE_SOURCE_DIR}/libplanet.a)
+if(ENABLE_DEBUG)
+    target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE -g)
+endif()
+#target_link_libraries(${project} ${CMAKE_SOURCE_DIR}/libplanet.a)

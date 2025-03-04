@@ -13,7 +13,6 @@ class Planet{
         int sattelite;
     public:
         Planet();
-        ~Planet();
         Planet(char* name_, int diametr_, int life_, int sattelite_);
         
         bool operator < (const Planet& b);
@@ -46,8 +45,6 @@ class Planet{
             LIFE = 3,
             SATTELITE = 4
         };
-
-        void srt( bool r, Planet* arr, int size);
 
         Planet read();
 

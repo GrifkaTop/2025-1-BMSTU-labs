@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+planet.o: planet.cpp.o
+.PHONY : planet.o
+
+# target to build an object file
+planet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/planet.cpp.o
+.PHONY : planet.cpp.o
+
+planet.i: planet.cpp.i
+.PHONY : planet.i
+
+# target to preprocess a source file
+planet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/planet.cpp.i
+.PHONY : planet.cpp.i
+
+planet.s: planet.cpp.s
+.PHONY : planet.s
+
+# target to generate assembly for a file
+planet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/planet.cpp.s
+.PHONY : planet.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... planet.o"
+	@echo "... planet.i"
+	@echo "... planet.s"
 .PHONY : help
 
 

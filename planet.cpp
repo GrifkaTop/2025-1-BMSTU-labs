@@ -4,6 +4,7 @@
 Planet::Planet() {}
 
 
+
 Planet::Planet(char* name_, int diametr_, int life_, int sattelite_){
     this->name = name_;
     this->diametr = diametr_;

@@ -1,7 +1,7 @@
-CMakeFiles/database.dir/database.cpp.o: \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/database/database.cpp \
+CMakeFiles/lab1.dir/planet.cpp.o: \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.cpp \
  /usr/include/stdc-predef.h \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/database/database.hpp \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

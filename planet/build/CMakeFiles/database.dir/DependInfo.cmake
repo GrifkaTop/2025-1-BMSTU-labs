@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/database/database.cpp" "CMakeFiles/database.dir/database.cpp.o" "gcc" "CMakeFiles/database.dir/database.cpp.o.d"
+  "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/planet.cpp" "CMakeFiles/database.dir/planet.cpp.o" "gcc" "CMakeFiles/database.dir/planet.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

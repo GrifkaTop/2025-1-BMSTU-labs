@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/database.dir/database.cpp.o"
-  "CMakeFiles/database.dir/database.cpp.o.d"
+  "CMakeFiles/database.dir/planet.cpp.o"
+  "CMakeFiles/database.dir/planet.cpp.o.d"
   "libdatabase.a"
   "libdatabase.pdb"
 )

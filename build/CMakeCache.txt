@@ -215,6 +215,9 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//No help, variable specified on the command line.
+ENABLE_DEBUG:UNINITIALIZED=True
+
 //Value Computed by CMake
 lab1_BINARY_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build
 
@@ -223,15 +226,6 @@ lab1_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 lab1_SOURCE_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs
-
-//Value Computed by CMake
-lab2_BINARY_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build
-
-//Value Computed by CMake
-lab2_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-lab2_SOURCE_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs
 
 
 ########################

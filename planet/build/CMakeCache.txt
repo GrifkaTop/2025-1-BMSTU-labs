@@ -216,6 +216,15 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
+database_BINARY_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/build
+
+//Value Computed by CMake
+database_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+database_SOURCE_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet
+
+//Value Computed by CMake
 planet_BINARY_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/build
 
 //Value Computed by CMake
