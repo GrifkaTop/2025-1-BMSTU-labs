@@ -78,9 +78,15 @@ template<typename T> void menuCase(Database<T>& db){
 
 
 int main(){
-    Database<Planet> db1;
-    menuCase<Planet>(db1);
-
-    Database<Requests>db2;
-    menuCase<Requests>(db2);
+    int a;
+    cin >> a;
+    if (a == 1){
+        Database<Planet> db1;
+        menuCase<Planet>(db1);
+    }
+    else {
+        Database<Requests>db2;
+        menuCase<Requests>(db2);
+    }
+    return 0;
 }
