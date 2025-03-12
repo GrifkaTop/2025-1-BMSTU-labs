@@ -148,7 +148,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=lab1
+CMAKE_PROJECT_NAME:STATIC=lab2
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -226,6 +226,15 @@ lab1_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 lab1_SOURCE_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs
+
+//Value Computed by CMake
+lab2_BINARY_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/build
+
+//Value Computed by CMake
+lab2_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+lab2_SOURCE_DIR:STATIC=/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs
 
 
 ########################

@@ -170,4 +170,5 @@ CMakeFiles/lab1.dir/main.cpp.o: \
  /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h

@@ -11,12 +11,12 @@ template<typename T> class Database{
     public:
         int size = 0;
         T *arr;
-        Database() {
-            arr  = static_cast<T*>(operator new[] (0*sizeof(T)));
-        }
+        Database(){
+            arr =nullptr;
+        };
         Database(int size_){
             size = size_;
-            arr  = static_cast<T*>(operator new[] (size_*sizeof(T)));
+            T* arr = new T[size];
         }
         ~Database(){
             delete[] arr;
@@ -34,12 +34,12 @@ template<typename T> class Database{
                 cout << "Переполнение БД. n= " << n << endl;
                 return 1;
             }
-            delete[] arr;
             size = n;
-            arr  = static_cast<T*>(operator new[] (size*sizeof(T)));
+            arr = new T[size];
             for (int i = 0; i < size; i++) {
                 fin >> arr[i];
             }
+
             fin.close();
             return 0;
         }
@@ -50,20 +50,26 @@ template<typename T> class Database{
                 cout << "Ошибка открытия файла" << endl;
                 return 1;
             }
-            fout << size;
+            fout << size << endl;
             for (int i = 0; i < size; i++)
-                fout << arr[i] << endl;
+                fout << arr[i];
             fout.close();
             return 0;
         }
         
         
-        void srt(bool r = false){
-            if (r)
-                sort(arr + 0, arr + size);
-            else
-                sort(arr + size, arr + 0);
-            return;
+        void srt(){
+            for (int i = 0; i < size; i++){
+                int id = i;
+                for (int j = i+1; j < size; j++) {
+                    if (arr[j] < arr[id]){
+                        id = j;
+                    }
+                }
+                if (id != i){
+                    std::swap(arr[i], arr[id]);
+                }
+            }
         }
         
         
@@ -74,40 +80,56 @@ template<typename T> class Database{
         вывод БД на экран.
         */
         
-        int push(T a){
+        int push(T &a){
             if (size > OVERFLOW_DB){
                 cout << "ПЕРЕПОЛНЕНИЕ\n";
                 return 1;
             }
-
-            T* arr2 = static_cast<T*>(operator new[] ((size + 1)*sizeof(T)));
-            copy(arr + 0, arr + size, arr2);
-            arr[size] = a;
-            arr = arr2;
             size++;
-            delete[] arr2;
+            T* buff = new T[size];
+            copy(arr + 0, arr + size-1, buff);
+            buff[size-1] = a;
+            T* old = arr;
+            arr = buff;
+            delete[] old;
             return 0;
         }
         
          int del(int id) {
-            if (id >= size) {
+            if (id >= size || id < 0) {
                 cout << "Нет ТАКОГО!\n";
                 return 1;
             }
-            T* arr2 = static_cast<T*>(operator new[] ((size - 1)*sizeof(T)));
-            for (int i = 0; i < id; i++){
-                arr2[i] = arr[i];
-            }
-            for (int i = id + 1; i < size; i++){
-                arr2[i-1] = arr[i];
-            }
-            arr = arr2;
             size--;
-            delete[] arr2;
+            T* buff = new T[size];
+            for (int i = 0; i < id; i++){
+                buff[i] = arr[i];
+            }
+            for (int i = id + 1; i < size + 1; i++){
+                buff[i-1] = arr[i];
+            }
+            arr = new T[size];
+            for (int i = 0; i < size; i++){
+                arr[i] = buff[i];
+            }
+            delete[] buff;
             return 0;
         }
         
+        void change(int id){
+            T a;
+            cout << "Введите данные: ";
+            cin >> a;
+            cout << endl;
+            change(id, a);
+            return;
+        }
+
         void change(int id, T a) {
+            if (id >= size || id < 0) {
+                cout << "Нет ТАКОГО!\n";
+                return;
+            }
             arr[id] = a;
             return;
         }
@@ -123,6 +145,7 @@ template<typename T> class Database{
             }
             return;
         }
+
         void print(int id) {
             if (id >= size){
                 cout << "Такого элемента нет\n";

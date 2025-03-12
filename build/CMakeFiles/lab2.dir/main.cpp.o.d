@@ -1,8 +1,7 @@
-CMakeFiles/lab1.dir/planet.cpp.o: \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.cpp \
- /usr/include/stdc-predef.h \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \
- /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
+CMakeFiles/lab2.dir/main.cpp.o: \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/main.cpp \
+ /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -150,8 +149,9 @@ CMakeFiles/lab1.dir/planet.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/iomanip \
- /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/istream.tcc \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/database.hpp \
+ /usr/include/c++/13/iomanip /usr/include/c++/13/locale \
  /usr/include/c++/13/bits/locale_facets_nonio.h /usr/include/c++/13/ctime \
  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
@@ -169,5 +169,8 @@ CMakeFiles/lab1.dir/planet.cpp.o: \
  /usr/include/c++/13/bits/uniform_int_dist.h \
  /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
- /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/cstring \
- /usr/include/string.h /usr/include/strings.h
+ /usr/include/c++/13/pstl/execution_defs.h \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/requests.hpp \
+ /usr/include/c++/13/utility /usr/include/c++/13/bits/stl_relops.h

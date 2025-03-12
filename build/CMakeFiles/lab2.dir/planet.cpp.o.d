@@ -1,4 +1,4 @@
-CMakeFiles/lab1.dir/planet.cpp.o: \
+CMakeFiles/lab2.dir/planet.cpp.o: \
  /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.cpp \
  /usr/include/stdc-predef.h \
  /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \

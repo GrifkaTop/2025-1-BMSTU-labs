@@ -1,38 +1,34 @@
 #include "planet.hpp"
 
 
-Planet::Planet() {}
+Planet::Planet() : name(nullptr), diametr(0), life(0), sattelite(0){}
+Planet::~Planet() {
+    delete[] name;
+}
 
 
 
-Planet::Planet(char* name_, int diametr_, int life_, int sattelite_){
-    this->name = name_;
+Planet::Planet( char* name_, int diametr_, int life_, int sattelite_){
+    this->name =new char[strlen(name_)+1];
+    strcpy(this->name, name_);
     this->diametr = diametr_;
     this->life = life_;
     this->sattelite = sattelite_;
 }
+
+Planet::Planet(const Planet &p){
+    this->name = new char[strlen(p.name)+1];
+    strcpy(this->name, p.name);
+    this->diametr = p.diametr;
+    this->life = p.life;
+    this->sattelite = p.sattelite;
+}
 /// Перегрузка оперторов
 
 bool Planet::operator < (const Planet& b){
-    int f = -1;
-    char* s1 = this->name;
-    char* s2 = b.name;
-    if (sizeof(s1) < sizeof(s2)){
-        f = 1;
-    }
-    for (int i = 0; i < min(sizeof(s1), sizeof(s2)); i++){
-        if (s1[i] == s2[i]) {
-            continue;
-        }
-        if (s1[i] > s2[i]) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-        break;
-    }
-    if (f == -1) {
+    int  f = std::strcmp(this->name, b.name);
+    //int f = 0;
+    if (f == 0) {
         if (this->diametr == b.diametr){
             if (this->life == b.life){
                 return this->sattelite < b.sattelite;
@@ -41,7 +37,7 @@ bool Planet::operator < (const Planet& b){
         }
         else return this->diametr < b.diametr;
     }
-    else return f;
+    return f < 0;
 }
 
 bool Planet::operator== (const Planet& b){
@@ -59,7 +55,18 @@ bool Planet::operator== (const Planet& b){
     return 1;
 }
 
-/* ????????
+
+void Planet::operator= (const Planet& b){
+    name = new char[strlen(b.name + 1)];
+    this->name = name;
+    strcpy(this->name, b.name);
+    this->diametr = b.diametr;
+    this->sattelite = b.sattelite;
+    this->life = b.life;
+    return;
+}
+/*
+ ????????
 bool operator > (Planet& b){
     return !(this < b);
 }
@@ -71,13 +78,17 @@ char* Planet::getName() { return name; }
 int Planet::getDiametr() { return diametr; }
 int Planet::getLife() { return life; }
 int Planet::getSattelite() { return sattelite; }
-void Planet::setName(char* name_) { this->name =  name_; }
+void Planet::setName(char* name_) { 
+    this->name =new char[strlen(name_)+1];
+    strcpy(this->name, name_);
+}
 void Planet::setDiametr(int diametr_) { this->diametr = diametr_; }
 void Planet::setLife(int life_) { this->life = life_; }
 void Planet::setSattelite(int sattelite_) { this->sattelite = sattelite_; }
 
 void Planet::setAll(char* name_, int diametr_, int life_, int sattelite_) {
-    this->name = name_;
+    this->name =new char[strlen(name_)+1];
+    strcpy(this->name, name_);
     this->diametr = diametr_;
     this->life = life_;
     this->sattelite = sattelite_;
@@ -127,7 +138,7 @@ ostream& operator << (ostream& os, Planet& a) {
 }
 
 istream& operator >> (istream& in, Planet& a) {
-    char* name_;
+    char* name_;// = new char[1000+1];
     int diametr_;
     int life_;
     int sattelite_;

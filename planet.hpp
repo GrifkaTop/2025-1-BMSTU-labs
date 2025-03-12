@@ -2,6 +2,9 @@
 #include <iomanip>
 #include <fstream>
 #include <algorithm>
+#include <cstring>
+#include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -13,10 +16,13 @@ class Planet{
         int sattelite;
     public:
         Planet();
+        ~Planet();
         Planet(char* name_, int diametr_, int life_, int sattelite_);
+        Planet(const Planet &p);
         
         bool operator < (const Planet& b);
         bool operator== (const Planet& b);
+        void operator= (const Planet& b);
         // bool operator > (Planet& b);
         
     
@@ -36,7 +42,7 @@ class Planet{
         bool compDiametr(Planet a, Planet b);
         bool compLife(Planet a, Planet b);
         bool compSattelite(Planet a, Planet b);
-
+        
 
         enum ShortChoice: int{
             BASE = 0,

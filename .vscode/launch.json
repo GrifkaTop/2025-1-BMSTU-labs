@@ -4,7 +4,7 @@
             "name": "debug 0_0",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/lab1",
+            "program": "${workspaceFolder}/build/lab2",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

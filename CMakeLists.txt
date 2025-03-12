@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.23)
 
-set(project "lab1")
+set(project "lab2")
 project(${project})
 
 set(CMAKE_CXX_STANDARD 17)
 
 set(${project}_SOURCES
-        main.cpp planet.cpp)
+        main.cpp planet.cpp requests.cpp)
 
 set(${project}_HEADERS
-        planet.hpp database.hpp)
+        planet.hpp database.hpp requests.hpp)
 
 
 set(${project}_SOURCE_LIST

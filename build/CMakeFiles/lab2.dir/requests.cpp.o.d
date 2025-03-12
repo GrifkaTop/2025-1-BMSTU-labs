@@ -1,7 +1,7 @@
-CMakeFiles/lab1.dir/planet.cpp.o: \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.cpp \
+CMakeFiles/lab2.dir/requests.cpp.o: \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/requests.cpp \
  /usr/include/stdc-predef.h \
- /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/planet.hpp \
+ /home/grifka/2025-1\ BMSTU\ labs/2025-1-BMSTU-labs/requests.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -170,4 +170,5 @@ CMakeFiles/lab1.dir/planet.cpp.o: \
  /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/cstring \
- /usr/include/string.h /usr/include/strings.h
+ /usr/include/string.h /usr/include/strings.h /usr/include/c++/13/utility \
+ /usr/include/c++/13/bits/stl_relops.h
