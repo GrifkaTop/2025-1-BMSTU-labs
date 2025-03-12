@@ -15,7 +15,11 @@ void printMenu(){
     cout << " =====================================================\n";
 }
 
-template<typename T> void menuCase(Database<T>& db){
+const char* FILEPATH = (char*)"/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/";
+template<typename T> void menuCase(Database<T>& db, char* filename){
+    char* fullpath = new char[strlen(FILEPATH) + strlen(filename) + 1];
+    strcpy(fullpath, FILEPATH);
+    strcat(fullpath, filename);
     while(true) {
         printMenu();
         //db.print();
@@ -64,10 +68,11 @@ template<typename T> void menuCase(Database<T>& db){
             db.Database<T>::print();
             break;
         case 6:
-            db.Database<T>::writeFile((char*) "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/1.txt");
+            db.Database<T>::writeFile(fullpath);
             break;
         case 7:
-            db.Database<T>::readFile((char*) "/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/base.txt");
+            
+            db.Database<T>::readFile(fullpath);
             break;
         default:
             break;
@@ -77,16 +82,18 @@ template<typename T> void menuCase(Database<T>& db){
 
 
 
+
 int main(){
-    int a;
+    std::cout<< "введите 1 для класса Планеты, что то другое будет что то другое\n";
+    int a = -1;
     cin >> a;
     if (a == 1){
         Database<Planet> db1;
-        menuCase<Planet>(db1);
+        menuCase<Planet>(db1, (char*)"1.txt");
     }
     else {
         Database<Requests>db2;
-        menuCase<Requests>(db2);
+        menuCase<Requests>(db2, (char*)"2.txt");
     }
     return 0;
 }

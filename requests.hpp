@@ -14,26 +14,27 @@ class Requests{
     private:
         int id_application; // значение уникально
         char* task_description;
-        int* id_employees;
-        int size_employees;
+        int id_employee;
     public: 
     // Конструктор и Деконструктор
-        Requests() : id_application(0), task_description(nullptr), id_employees(nullptr), size_employees(0){}
+        Requests() : id_application(0), 
+                    task_description(nullptr), 
+                    id_employee(0) {}
         ~Requests();
-        Requests(int id_application_, char* task_description_, int* id_employees_, int size_employees_);
+        Requests(int id_application_, char* task_description_, int id_employee);
         Requests(const Requests &r) ;
     /// Перегрузка оперторов
         bool operator < (Requests& b) ;
-        void operator= (const Requests& b) ;
+        Requests& operator= (const Requests& b) ;
     //set get
-        int getIdApplication() ;
-        char* getTaskDesciption();
-        std::pair<int, int*> getIdEmployees() ;
-        void setIdApplication(int id_application_);
-        void setTaskDescription(char* task_description_);
-        void setIdEmployees(int size_employees_, int* id_employees_) ;
-        void setAll(int id_application_, char* task_description_, int* id_employees_, int size_employees_);
+        int getIdApplication() const;
+        char* getTaskDesciption() const;
+        int getIdEmployee() const;
+        void setIdApplication(const int id_application_);
+        void setTaskDescription(const char* task_description_);
+        void setIdEmployee(const int id_employee_) ;
+        void setAll(const int id_application_, const char* task_description_, const int id_employee_);
 };
 
-ostream& operator << (ostream& os, Requests& a);
-istream& operator >> (istream& in, Requests& a);
+ostream& operator << (ostream& os, const Requests& r);
+istream& operator >> (istream& in, Requests& r);

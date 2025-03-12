@@ -1,3 +1,0 @@
-/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/build/CMakeFiles/planet.dir
-/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/build/CMakeFiles/edit_cache.dir
-/home/grifka/2025-1 BMSTU labs/2025-1-BMSTU-labs/planet/build/CMakeFiles/rebuild_cache.dir

@@ -141,7 +141,7 @@ template<typename T> class Database{
             }
             cout << size << endl; 
             for (int i = 0; i < size; i++){
-                cout << arr[i];
+                cout << i << ". " << arr[i];
             }
             return;
         }

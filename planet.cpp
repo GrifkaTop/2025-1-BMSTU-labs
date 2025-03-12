@@ -138,7 +138,7 @@ ostream& operator << (ostream& os, Planet& a) {
 }
 
 istream& operator >> (istream& in, Planet& a) {
-    char* name_;// = new char[1000+1];
+    char* name_ = new char[1000+1];
     int diametr_;
     int life_;
     int sattelite_;
