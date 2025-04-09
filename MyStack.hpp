@@ -8,14 +8,11 @@ template<class T, class FRIEND>
 class ListNode              // узел списка
 {
 private:
-    T d;                  // информационная часть узла
+    T d;                    // информационная часть узла
     ListNode *next;         // указатель на следующий узел списка
 
-    ListNode(void) { next = nullptr; } //конструктор
-    ListNode(T d_, ListNode* top) {
-        this->d = d_;
-        this->next = top;
-    }
+    ListNode() : next(nullptr) {} // конструктор по умолчанию
+    ListNode(T d_, ListNode* top) : d(d_), next(top) {} // конструктор с параметрами
     
     friend FRIEND;
 };
@@ -27,37 +24,60 @@ private:
     typedef class ListNode<T, MyStack<T>> Node;
     Node *top;
 public:
-    MyStack(void) {
-        top = nullptr;
-    };           // конструктор
-    ~MyStack(void){
-        if (!= nullptr){
-            delete &low->next;
+    MyStack() : top(nullptr) {}          // конструктор
+    ~MyStack() {                         // освободить динамическую память
+        while (!empty()) {
+            pop();
         }
-    };          // освободить динамическую память
-    bool empty(void) {
-        return (top == nullptr);
-    }        // стек пустой?
-    bool push(T n); {
-        Node a = new Node(n, top);
-        top = a;
-        return 0;
+    }
+    bool empty() { return (top == nullptr); } // стек пустой?
+    
+    bool push(T n) {
+        top = new Node(n, top);
+        return true;
     }       // добавить узел в вершину стека
-    bool pop(void){
-        if (!empty()){
-            Node *a = this->&top->next;
-            delete this->&top;
-            top = a;
-            return 0;
-        }
-        else{
-            return 1;
-        }
-    };          // удалить узел из вершины стека
-    T top_inf(void){
-        return top->d;
-    };      // считать информацию из вершины стека
+    
+    bool pop() {          // удалить узел из вершины стека
+        if (empty()) return false;
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+        return true;
+    }
+    
+    T top_inf() { return top->d; }      // считать информацию из вершины стека
 
+    
+    void copyFrom(const MyStack& other) {
+        if (other.top == nullptr) {
+            top = nullptr;
+            return;
+        }
+
+        top = new Node(other.top->d, nullptr);
+        Node* current = top;
+        Node* otherCurrent = other.top->next;
+
+        while (otherCurrent != nullptr) {
+            current->next = new Node(otherCurrent->d, nullptr);
+            current = current->next;
+            otherCurrent = otherCurrent->next;
+        }
+    }
+
+    MyStack(const MyStack& other) : top(nullptr) {
+        copyFrom(other);
+    }
+    
+    MyStack& operator=(const MyStack& other) {
+        if (this != &other) {
+            while (!empty()) {
+                pop();
+            }
+            copyFrom(other);
+        }
+        return *this;
+    }
 };
 
 #endif
