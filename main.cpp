@@ -21,7 +21,7 @@ void func(int x, MyStack<int> &a){
     }
 }
 
-void reversee(MyStack<int> &a){
+template<typename T> void reversee(MyStack<T> &a){
     MyStack<int> c;
     while(!a.empty()){
         c.push((int) a.top_inf());
@@ -43,18 +43,14 @@ template<typename T> void print(MyStack<T> &a){
 }
 
 void func2(int x){
-    cout << "1\n";
     if (x <= 1) {
-        cout << "непопался";
+        cout << "непопался\n";
         return;
     }
     MyStack<int> a;
     func(x, a);
-    cout << "2\n";
     MyStack<int> b = a;
-    cout << "3\n";
     reversee(a);
-    cout << "4\n";
     cout << x << ':' << ' ';
     print<int>(a);
     cout << x << ':' << ' ';
@@ -78,6 +74,7 @@ void print_test_result(bool condition, const std::string& test_name) {
 }
 
 int main() {
+    /*
     // Тест 1: Проверка пустого стека
     {
         MyStack<int> stack;
@@ -196,10 +193,20 @@ int main() {
     check = check && (source.top_inf() == 20);
     
     print_test_result(check, "Test 8: Assignment operator");
-}
-
-
-    func2(153);
-
+} */
+    MyStack<char> source;
+    auto c = source;
+    source.push('a');
+    source.push('b');
+    source.push('c');
+    source.print(); cout << '\n';
+    c = source;
+    auto k(source);
+    c.print(); cout << '\n';
+    k.print(); cout << '\n';
+    int a = 0;
+    cin >> a;
+    func2(a);
+    
     return 0;
 }

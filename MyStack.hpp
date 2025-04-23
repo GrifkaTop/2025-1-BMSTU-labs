@@ -63,6 +63,7 @@ public:
             current = current->next;
             otherCurrent = otherCurrent->next;
         }
+        current->next = nullptr;
     }
 
     MyStack(const MyStack& other) : top(nullptr) {
@@ -78,6 +79,17 @@ public:
         }
         return *this;
     }
+
+    void print(){
+        Node *a = top; 
+        while (a->next != nullptr){
+            std::cout << a->d << ' ';
+            a = a->next;
+        }
+        std::cout << a->d << ' ';
+    }
 };
+
+
 
 #endif
