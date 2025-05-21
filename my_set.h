@@ -1,142 +1,145 @@
-#ifndef MY_SET_H
-#define MY_SET_H
+
 
 #include "my_vector.h"
-#include <iostream>
 
-template <typename T>
+template<typename T>
 class MySet : public MyVector<T> {
-private:
-    int q_find(const T& element) const {
+    int q_find(const T element) const {
         int left = 0;
         int right = static_cast<int>(this->size) - 1;
-        
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            
-            if (this->pdata[mid] == element) {
+            if (this->ptr[mid] == element)
                 return mid;
-            }
-            
-            if (this->pdata[mid] < element) {
+            if (this->ptr[mid] < element)
                 left = mid + 1;
-            } else {
+            else
                 right = mid - 1;
-            }
         }
-        
         return -1;
     }
 
-public:
-    using MyVector<T>::MyVector;
+ public:
+    MySet(T element = T(), size_t capacity = kDefaultVectorCapacity) : MyVector<T>(element, capacity) {};
 
-    bool is_element(const T& element) const {
-        return q_find(element) != -1;
-    }
+    bool operator==(MySet<T>& other);
 
-    void add_element(const T& element) {
-        if (!is_element(element)) {
-            MyVector<T>::add_element(element);
-            this->sort(); 
-        }
-    }
-    
-    void delete_element(const T& element) {
-        int index = q_find(element);
-        if (index != -1) {
-            MyVector<T>::delete_element(static_cast<size_t>(index));
-        }
-    }
-    
     MySet& operator+=(const MySet& other) {
-        for (size_t i = 0; i < other.get_size(); i++) {
-            add_element(other[i]);
+        for (size_t i = 0; i < other.size; ++i) {
+            add_element(other.ptr[i]);
         }
         return *this;
     }
-    
+
     MySet& operator-=(const MySet& other) {
-        for (size_t i = 0; i < other.get_size(); i++) {
-            delete_element(other[i]);
-        }
-        return *this;
-    }
-    
-    MySet& operator*=(const MySet& other) {
-        MySet<T> result;
-        for (size_t i = 0; i < this->size; i++) {
-            if (other.is_element(this->pdata[i])) {
-                result.add_element(this->pdata[i]);
+        for (size_t i = 0; i < other.size; ++i) {
+            int index = q_find(other.ptr[i]);
+            if (index != -1) {
+                this->delete_element(index);
             }
         }
-        *this = result;
         return *this;
     }
-    
-    template <typename U>
-    friend MySet<U> operator+(const MySet<U>& lhs, const MySet<U>& rhs);
-    
-    template <typename U>
-    friend MySet<U> operator-(const MySet<U>& lhs, const MySet<U>& rhs);
-    
-    template <typename U>
-    friend MySet<U> operator*(const MySet<U>& lhs, const MySet<U>& rhs);
-    
-    template <typename U>
-    friend bool operator==(const MySet<U>& lhs, const MySet<U>& rhs);
-    
-    template <typename U>
-    friend std::ostream& operator<<(std::ostream& os, const MySet<U>& set);
+
+    MySet& operator*=(const MySet& other) {
+        for (int i = static_cast<int>(this->size) - 1; i >= 0; --i) {
+            if (other.q_find(this->ptr[i]) == -1) {
+                this->delete_element(i);
+            }
+        }
+        return *this;
+    }
+
+    void add_element(T element) {
+        if (!this->ptr) {
+            throw std::runtime_error("invalid vector");
+        }
+
+        if (!is_element(element)) {
+            MyVector<T>::add_element(element);
+            this->sort();
+        }
+    };
+
+    bool is_element(T element) const {
+        if (!this->ptr || this->size == 0) {
+            return false;
+        }
+
+        int index = q_find(element);
+        if (index == -1) {
+            return false;
+        }
+        return true;
+    };
+
+    friend MySet operator+(const MySet& s1, const MySet& s2) {
+        MySet temp = s1;
+        temp += s2;
+        return temp;
+    };
+
+    friend MySet operator-(const MySet& s1, const MySet& s2) {
+        MySet temp = s1;
+        temp -= s2;
+        return temp;
+    };
+
+    friend MySet operator*(const MySet& s1, const MySet& s2) {
+        MySet temp = s1;
+        temp *= s2;
+        return temp;
+    };
 };
 
-template <typename T>
-MySet<T> operator+(const MySet<T>& lhs, const MySet<T>& rhs) {
-    MySet<T> result = lhs;
-    result += rhs;
-    return result;
+template<>
+int MySet<char*>::q_find(char* element) const {
+    if (!element)
+        return -1;
+
+    int left = 0;
+    int right = static_cast<int>(this->size) - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        int cmp = std::strcmp(this->ptr[mid], element);
+        if (cmp == 0)
+            return mid;
+        if (cmp < 0)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
 }
 
-template <typename T>
-MySet<T> operator-(const MySet<T>& lhs, const MySet<T>& rhs) {
-    MySet<T> result = lhs;
-    result -= rhs;
-    return result;
-}
-
-template <typename T>
-MySet<T> operator*(const MySet<T>& lhs, const MySet<T>& rhs) {
-    MySet<T> result = lhs;
-    result *= rhs;
-    return result;
-}
-
-template <typename T>
-bool operator==(const MySet<T>& lhs, const MySet<T>& rhs) {
-    if (lhs.get_size() != rhs.get_size()) {
+template<typename T>
+bool MySet<T>::operator==(MySet<T>& other) {
+    if (this->size != other.size) {
         return false;
     }
-    
-    for (size_t i = 0; i < lhs.get_size(); i++) {
-        if (!rhs.is_element(lhs[i])) {
+
+    for (size_t i = 0; i < this->size; ++i) {
+        if (this->ptr[i] != other.ptr[i]) {
             return false;
         }
     }
-    
+
     return true;
 }
 
-template <typename T>
-std::ostream& operator<<(std::ostream& os, const MySet<T>& set) {
-    os << "{";
-    for (size_t i = 0; i < set.get_size(); i++) {
-        os << set[i];
-        if (i < set.get_size() - 1) {
-            os << ", ";
+template<>
+bool MySet<char*>::operator==(MySet<char*>& other) {
+    if (this->size != other.size) {
+        return false;
+    }
+
+    for (size_t i = 0; i < this->size; ++i) {
+        if (std::strcmp(this->ptr[i], other.ptr[i]) != 0) {
+            return false;
         }
     }
-    os << "}";
-    return os;
+
+    return true;int
 }
 
-#endif // MY_SET_H
+MySet(const char*) -> MySet<char*>;

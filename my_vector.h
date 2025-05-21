@@ -1,124 +1,252 @@
-#ifndef MY_VECTOR_H
-#define MY_VECTOR_H
 
 #include <iostream>
-#include <algorithm>
+#include <cstring>
+namespace {
+const size_t kDefaultVectorCapacity = 5;
+const size_t kGrowthFactor = 2;
+const size_t kDecreaseFactor = 4;
 
-template <typename T>
+size_t getNeededSize(size_t size, size_t capacity) {
+    if (size >= capacity) {
+        return capacity * kGrowthFactor;
+    } else if (size < capacity / kDecreaseFactor) {
+        return std::max(capacity / kGrowthFactor, kDefaultVectorCapacity);
+    }
+
+    return size;
+}
+
+}  // namespace
+
+template<typename T>
 class MyVector {
-protected:
-    size_t max_size; 
-    size_t size;    
-    T* pdata;     
+ protected:
+    size_t capacity;
+    size_t size;
+    T* ptr;
 
-    static const size_t DEFAULT_SIZE;
+    void resize(size_t newCapacity) {
+        if (!ptr) {
+            throw std::runtime_error("invalid vector");
+        }
 
-    void resize() {
-        if (size >= max_size) {
-            max_size *= 2;
-            T* new_data = new T[max_size];x
-            for (size_t i = 0; i < size; i++) {
-                new_data[i] = pdata[i];
-            }
-            delete[] pdata;
-            pdata = new_data;
-        } else if (size < max_size / 4 && max_size > DEFAULT_SIZE) {
-            max_size = std::max(max_size / 2, DEFAULT_SIZE);
-            T* new_data = new T[max_size];
-            for (size_t i = 0; i < size; i++) {
-                new_data[i] = pdata[i];
-            }
-            delete[] pdata;
-            pdata = new_data;
+        capacity = newCapacity;
+        T* buffer = new T[capacity];
+        std::copy(ptr, ptr + size, buffer);
+        delete[] ptr;
+        ptr = buffer;
+    }
+
+ public:
+    MyVector(const T element = T(), size_t capacity = kDefaultVectorCapacity) : capacity(capacity), size(0), ptr(new T[capacity]) {
+        if (element != T()) {
+            ptr[0] = element;
+            size = 1;
         }
     }
+    virtual ~MyVector() { delete[] ptr; }
 
-public:
-    explicit MyVector(size_t initial_size = DEFAULT_SIZE) : max_size(initial_size), size(0) {
-        pdata = new T[max_size];
-    }
-
-    MyVector(const MyVector& other) : max_size(other.max_size), size(other.size) {
-        pdata = new T[max_size];
-        for (size_t i = 0; i < size; i++) {
-            pdata[i] = other.pdata[i];
-        }
-    }
-
-    virtual ~MyVector() {
-        delete[] pdata;
+    MyVector(const MyVector& other) : capacity(other.capacity), size(other.size), ptr(new T[capacity]) {
+        std::copy(other.ptr, other.ptr + size, ptr);
     }
 
     MyVector& operator=(const MyVector& other) {
         if (this != &other) {
-            delete[] pdata;
-            max_size = other.max_size;
+            delete[] ptr;
+            capacity = other.capacity;
             size = other.size;
-            pdata = new T[max_size];
-            for (size_t i = 0; i < size; i++) {
-                pdata[i] = other.pdata[i];
-            }
+            ptr = new T[capacity];
+            std::copy(other.ptr, other.ptr + size, ptr);
         }
         return *this;
     }
 
-    void add_element(const T& element) {
-        if (size >= max_size) {
-            resize();
+    void add_element(T element) {
+        size_t neededSize = getNeededSize(size, capacity);
+
+        if (size != neededSize) {
+            resize(neededSize);
         }
-        pdata[size++] = element;
+
+        ptr[size++] = element;
     }
 
-    void delete_element(size_t index) {
-        if (index >= size) {
-            throw std::out_of_range("Index out of range");
+    bool delete_element(size_t index) {
+        if (!ptr || index >= size) {
+            return false;
         }
-        
-        for (size_t i = index; i < size - 1; i++) {
-            pdata[i] = pdata[i + 1];
-        }
+
+        for (size_t i = index; i < size - 1; ++i)
+            ptr[i] = ptr[i + 1];
         size--;
-        
-        resize();
+        size_t neededSize = getNeededSize(size, capacity);
+
+        if (size != neededSize) {
+            resize(neededSize);
+        }
+
+        return true;
     }
 
-    int find(const T& element) const {
-        for (size_t i = 0; i < size; i++) {
-            if (pdata[i] == element) {
-                return static_cast<int>(i);
+    T operator[](size_t index) const {
+        if (!ptr) {
+            throw std::runtime_error("invalid vector");
+        }
+
+        if (index >= size) {
+            throw std::runtime_error("index out of range");
+        }
+
+        return ptr[index];
+    }
+
+    size_t get_size() { return size; };
+    size_t get_capacity() { return capacity; };
+
+    int find(T element) const {
+        for (size_t i = 0; i < size; ++i) {
+            if (ptr[i] == element) {
+                return i;
             }
         }
         return -1;
     }
 
-    T& operator[](size_t index) {
-        if (index >= size) {
-            throw std::out_of_range("Index out of range");
-        }
-        return pdata[index];
-    }
-
-    const T& operator[](size_t index) const {
-        if (index >= size) {
-            throw std::out_of_range("Index out of range");
-        }
-        return pdata[index];
-    }
-
-    size_t get_size() const {
-        return size;
-    }
-
-    size_t get_max_size() const {
-        return max_size;
-    }
-
     void sort() {
-        std::sort(pdata, pdata + size);
+        if (!ptr) {
+            throw std::runtime_error("invalid vector");
+        }
+
+        if (size <= 1) {
+            return;
+        }
+
+        for (size_t i = 0; i < size - 1; ++i) {
+            size_t swappingElementIndex = i;
+
+            for (size_t j = i + 1; j < size; ++j) {
+                if (ptr[j] < ptr[swappingElementIndex]) {
+                    swappingElementIndex = j;
+                }
+            }
+
+            if (i != swappingElementIndex) {
+                std::swap(ptr[i], ptr[swappingElementIndex]);
+            }
+        }
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const MyVector<T>& vector) {
+        if (!vector.ptr) {
+            throw std::runtime_error("invalid vector");
+        }
+
+        out << '{';
+        if (vector.size != 0) {
+            for (size_t i = 0; i < vector.size - 1; ++i) {
+                out << vector.ptr[i] << ", ";
+            }
+            out << vector.ptr[vector.size - 1];
+        }
+
+        return out << '}';
     }
 };
 
-template <typename T>
-const size_t MyVector<T>::DEFAULT_SIZE = 1;
+template<>
+MyVector<char*>::MyVector(char* element, size_t capacity) : capacity(capacity), size(0), ptr(new char*[capacity]) {
+    if (element) {
+        ptr[0] = new char[std::strlen(element) + 1];
+        std::strcpy(ptr[0], element);
+        size = 1;
+    }
+}
 
-#endif // MY_VECTOR_H
+template<>
+MyVector<char*>::~MyVector() {
+    for (size_t i = 0; i < size; ++i) {
+        delete[] ptr[i];
+    }
+    delete[] ptr;
+}
+
+template<>
+MyVector<char*>::MyVector(const MyVector& other) : capacity(other.capacity), size(other.size), ptr(new char*[capacity]) {
+    for (size_t i = 0; i < size; ++i) {
+        ptr[i] = new char[std::strlen(other[i]) + 1];
+        std::strcpy(ptr[i], other.ptr[i]);
+    }
+}
+
+template<>
+MyVector<char*>& MyVector<char*>::operator=(const MyVector& other) {
+    if (this != &other) {
+        for (size_t i = 0; i < size; ++i)
+            delete[] ptr[i];
+        delete[] ptr;
+        capacity = other.capacity;
+        size = other.size;
+        ptr = new char*[capacity];
+        for (size_t i = 0; i < size; ++i) {
+            ptr[i] = new char[strlen(other.ptr[i]) + 1];
+            strcpy(ptr[i], other.ptr[i]);
+        }
+    }
+    return *this;
+}
+
+template<>
+bool MyVector<char*>::delete_element(size_t index) {
+    if (!ptr || index >= size)
+        return false;
+
+    delete ptr[index];
+
+    for (size_t i = index; i < size - 1; ++i) {
+        ptr[i] = ptr[i + 1];
+    }
+
+    --size;
+
+    size_t neededSize = getNeededSize(size, capacity);
+    if (size != neededSize) {
+        resize(neededSize);
+    }
+
+    return true;
+}
+
+template<>
+void MyVector<char*>::add_element(char* element) {
+    if (!element) {
+        return;
+    }
+
+    size_t neededSize = getNeededSize(size, capacity);
+    if (size != neededSize) {
+        resize(neededSize);
+    }
+
+    ptr[size] = new char[std::strlen(element) + 1];
+    std::strcpy(ptr[size++], element);
+}
+
+template<>
+void MyVector<char*>::sort() {
+    if (!ptr || size <= 1)
+        return;
+
+    for (size_t i = 0; i < size - 1; ++i) {
+        size_t min_idx = i;
+        for (size_t j = i + 1; j < size; ++j) {
+            if (std::strcmp(ptr[j], ptr[min_idx]) < 0) {
+                min_idx = j;
+            }
+        }
+        if (min_idx != i) {
+            std::swap(ptr[i], ptr[min_idx]);
+        }
+    }
+}
+
+MyVector(const char*) -> MyVector<char*>;
