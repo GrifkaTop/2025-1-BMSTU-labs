@@ -1,40 +1,48 @@
 #pragma once
 #include <iostream>
-#include <string>
+#include <cstring>
 
 class Article {
 protected:
-    std::string name;
+    char* name; 
 public:
-    Article(const std::string& name);
+    Article(const char* name);
     virtual ~Article();
     virtual void show() const = 0;
 };
 
 class Product : public Article {
+protected:
+    char* production_date;
 public:
-    Product(const std::string& name);
-    ~Product() override;
+    Product(const char* name, const char* date);
+    virtual ~Product() override;
     void show() const override;
 };
 
 class Dairy : public Product {
+private:
+    int expiry_days;
 public:
-    Dairy(const std::string& name);
+    Dairy(const char* name, const char* date, int expiry);
     ~Dairy() override;
     void show() const override;
 };
 
 class Toy : public Article {
+protected:
+    int recommended_age;
 public:
-    Toy(const std::string& name);
-    ~Toy() override;
+    Toy(const char* name, int age);
+    virtual ~Toy() override;
     void show() const override;
 };
 
 class Bear : public Toy {
+private:
+    char* color; 
 public:
-    Bear(const std::string& name);
+    Bear(const char* name, int age, const char* color);
     ~Bear() override;
     void show() const override;
 };
